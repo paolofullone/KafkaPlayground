@@ -33,7 +33,7 @@ services:
     volumes:
       - ./src/Data/SqlServer/:/tmp/
     command: /bin/bash -c "ls /tmp/ && sleep 60 && chmod +x /tmp/database.sh && /tmp/database.sh"
-    #restart: always # can be used here and reduce the sleep time above, in this case set the sql script to verifiy for existing resources before creating them
+  #restart: always # can be used here and reduce the sleep time above, in this case set the sql script to verifiy for existing resources before creating them
 
   kafka:
     image: confluentinc/cp-kafka:latest
@@ -79,7 +79,9 @@ services:
 
       echo -e 'Creating topic '
 
-      kafka-topics --bootstrap-server kafka:9091 --create --if-not-exists --topic kafka-playground-topic --partitions 10 --replication-factor 1
+      kafka-topics --bootstrap-server kafka:9091 --create --if-not-exists --topic kafka-topic --partitions 10 --replication-factor 1
+      
+      kafka-topics --bootstrap-server kafka:9091 --create --if-not-exists --topic kafka-message-pack-topic --partitions 10 --replication-factor 1
 
       kafka-topics --bootstrap-server kafka:9091 --create --if-not-exists --topic kafka-healthcheck-topic --partitions 10 --replication-factor 1
 

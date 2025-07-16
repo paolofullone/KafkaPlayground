@@ -4,6 +4,7 @@ namespace WebApi.Services
 {
     public interface IKafkaProducerService
     {
-        public Task PublishMessageAsync(KafkaMessageRequest request, CancellationToken cancellationToken);
+        Task PublishMessageAsync(KafkaMessageRequest request, CancellationToken cancellationToken);
+        Task PublishMessagePackMessageAsync(KafkaMessageRequest request, CancellationToken cancellationToken);
     }
 }

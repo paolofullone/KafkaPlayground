@@ -5,7 +5,7 @@ using System.Data.Common;
 using System.Text.RegularExpressions;
 
 namespace WebApi.Extensions
-// can be move to infrastructure project, so the webapi does not deal with dapper
+// can be moved to infrastructure project, so the webapi does not deal with dapper
 {
     public class HealthCheckExtensionMultiDatabase : IHealthCheck
     {

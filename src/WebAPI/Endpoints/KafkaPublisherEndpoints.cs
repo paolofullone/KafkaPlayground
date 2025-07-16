@@ -24,6 +24,10 @@ namespace WebApi.Endpoints
                 .WithName("PublishMessages")
                 .MapToApiVersion(new ApiVersion(1, 0));
 
+            endpointGroup.MapPost("message-pack", PublishMessagePackKafka)
+                .WithName("PublishMessagePackKafka")
+                .MapToApiVersion(new ApiVersion(1, 0));
+
             return app;
         }
 
@@ -33,6 +37,19 @@ namespace WebApi.Endpoints
             CancellationToken cancellationToken)
         {
             await kafkaProducerService.PublishMessageAsync(request, CancellationToken.None);
+
+            return Results.Ok(new
+            {
+                Message = $"Successfully processed {request.MessageAmount} messages."
+            });
+        }
+
+        private static async Task<IResult> PublishMessagePackKafka(
+            [FromServices] IKafkaProducerService kafkaProducerService,
+            KafkaMessageRequest request,
+            CancellationToken cancellationToken)
+        {
+            await kafkaProducerService.PublishMessagePackMessageAsync(request, CancellationToken.None);
 
             return Results.Ok(new
             {

@@ -27,7 +27,7 @@ The docker compose will create a SQL Server and a database, when the POST /api/v
 
 ## Kafka Initialization Script
 
-The docker compose will also create a Kafka topic called "kafka-playground-topic" and the topics, partitions, messages etc can be inspected with Kafdrop:
+The docker compose will also create a Kafka topic called "kafka-topic" and the topics, partitions, messages etc can be inspected with Kafdrop:
 
 <img src="./images/kafdrop.png" alt="Kafdrop UI"/>
 
